@@ -1,0 +1,318 @@
+@import "site-common";
+
+:root {
+	--gutter-size: 2.5rem;
+}
+
+@media screen and (max-width: 50rem) {
+    :root {
+        --gutter-size: 1.25rem;
+    }
+}
+
+body {
+	display: grid;
+	--max-width: 100rem;
+	--clamped-width: min(100vw, var(--max-width));
+
+	--left-dead-space: ((100vw - var(--clamped-width) * 7 / 5) / 2);
+	--home-header-space: (var(--clamped-width) * 2 / 5 - 1.875rem);
+	--main-content-space: (var(--clamped-width) * 3 / 5);
+
+	grid-template-areas: "header" "content";
+	grid-template-rows: auto auto;
+	grid-template-columns: 100%;
+}
+
+.post-header {
+	grid-area: header;
+}
+
+main {
+	grid-area: content;
+}
+
+/*
+    Post header
+*/
+
+.post-header {
+	padding: var(--gutter-size);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+
+	background-image:
+		linear-gradient(to bottom, transparent 0%, $main-bg 100%), 
+		linear-gradient(to bottom, transparent 0%, $main-bg 150%), 
+		radial-gradient(ellipse farthest-corner at 50% 0%, transparent, $main-bg), 
+		url("/assets/hero-fade.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: top center;
+
+	padding-bottom: 20rem;
+	margin-bottom: -20rem;
+
+	overflow-x: hidden;
+}
+
+.post-header > .post-nav {
+    grid-area: nav;
+	opacity: 0.8;
+}
+.post-header > .post-info {
+    grid-area: info;
+}
+.post-header > * {
+	width: 100%;
+	max-width: calc(60rem - var(--gutter-size) * 2);
+
+	mix-blend-mode: luminosity;
+	color: #ccc;
+	text-shadow: 0 0 2rem #888;
+}
+
+.post-header > .post-nav {
+    display: flex;
+	flex-wrap: wrap;
+    flex-direction: row;
+
+	font-size: 1rem;
+    gap: 1em;
+}
+
+.post-header > .post-nav > a {
+	color: inherit;
+}
+
+.post-header > .post-nav > a.backlink {
+	position: relative;
+	font-weight: 700;
+}
+
+@media screen and (max-width: 80rem) {
+	.post-header > .post-nav > a.backlink {
+		margin-left: 2rem;
+	}
+}
+
+.post-header > .post-nav > a.backlink::before {
+	content: "←";
+	position: absolute;
+	right: calc(100% + 1rem);
+	transition: transform 0.2s ease;
+}
+
+.post-header > .post-nav > a.backlink:hover::before {
+	transform: translateX(-1rem);
+	text-decoration: none;
+}
+
+.post-header > .post-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+
+/*
+	Main
+*/
+main {
+	max-width: 60rem;
+	width: 100%;
+	padding: var(--gutter-size);
+	margin: 0 auto;
+}
+
+
+/*
+    Articles
+*/
+
+article > * {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+article > *:first-child {
+    margin-top: 0;
+}
+
+article > *:last-child {
+    margin-bottom: 0;
+}
+
+article > h1,
+article > h2,
+article > h3,
+article > h4 {
+    margin-top: 3rem;
+}
+
+article ul {
+    margin-left: 1rem;
+}
+
+article ol {
+    margin-left: 1rem;
+}
+
+article li {
+    padding-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+article::after {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 1rem;
+    background: url("/assets/hero-fade.png");
+	filter: brightness(160%) saturate(120%);
+	background-size: 100% 100%;
+    margin-top: 2.5rem;
+	border-radius: 1rem;
+	clear: both;
+}
+
+article br.clearfloat {
+	height: 0;
+	width: 0;
+	clear: both;
+}
+
+article img {
+    width: calc(100% + var(--gutter-size)*2);
+    max-height: 50rem;
+    object-fit: contain;
+    margin-left: calc(var(--gutter-size)*-1);
+
+	border-radius: 1rem;
+}
+
+article figure {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    width: 100%;
+}
+
+article figure img {
+    width: 100%;
+    max-height: 20rem;
+	margin-left: 0;
+
+	border-radius: 1rem;
+}
+
+@media screen and (min-width: 50rem) {
+	article figure.aside {
+		max-width: 100%;
+		width: auto;
+		float: right;
+		clear: both;
+		margin: 0;
+		margin-left: 1em;
+		margin-bottom: 1em;
+		margin-right: calc(var(--gutter-size)*-1);
+		justify-content: right;
+	}
+
+	article figure.aside img {
+		width: auto;
+		max-width: 40rem;
+	}
+}
+
+@media screen and (min-width: 120rem) {
+	article figure.aside {
+		width: 0;
+		justify-content: left;
+	}
+
+	article figure.aside img {
+		width: max-content;
+		max-width: 40rem;
+	}
+}
+
+article iframe {
+    width: calc(100% + var(--gutter-size)*2);
+	height: auto;
+	aspect-ratio: 1.7778;
+    margin-left: calc(var(--gutter-size)*-1);
+
+	border-radius: 1rem;
+}
+
+article pre,
+article code {
+    font-family: $font-code;
+    background-color: $code-bg;
+    color: $code-fg;
+    font-size: $font-size-code;
+    tab-size: 4;
+
+	border-radius: 1rem;
+}
+
+article code {
+    padding: 1px 5px;
+}
+
+article pre {
+    padding: var(--gutter-size);
+    overflow-x: auto;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+article div.highlight {
+    width: calc(100% + var(--gutter-size)*2);
+    margin-left: calc(var(--gutter-size)*-1);
+    @include code-highlight-classes;
+}
+
+article blockquote {
+    padding-left: calc(var(--gutter-size) - 0.5rem);
+    border-left: 0.5rem solid $sub-fg;
+    font-style: italic;
+}
+
+article blockquote > :first-child::before {
+    content: "“ ";
+}
+
+article blockquote > :last-child::after {
+    content: " „";
+}
+
+/*
+    Footer
+*/
+
+footer {
+    font-size: 0.75rem;
+	margin-top: 2rem;
+    margin-bottom: var(--gutter-size);
+	opacity: 0.2;
+	mix-blend-mode: luminosity;
+	transition: opacity 0.1s ease;
+}
+
+footer::after {
+    content: "Website theme by Daniel P H Fox.";
+}
+
+footer:hover {
+	opacity: 1;
+	mix-blend-mode: normal;
+}

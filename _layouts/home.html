@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+{%- include head-home.html -%}
+
+<body>
+	<header class="home-header">
+		<h1>{{ site.title }}</h1>
+	</header>
+
+	<main>
+		<ul class="post-list">
+			{%- for post in site.posts -%}
+			<li class="post-list-entry">
+				<a href="{{ post.url }}">
+					<h2>{{ post.title }}</h2>
+					{%- if post.excerpt -%}
+					<p>{{ post.excerpt | strip_html }}</p>
+					{%- endif -%}
+					<time datetime="{{ post.date }}">{{ post.date | date: site.date_format }}</time>
+				</a>
+			</li>
+			<hr>
+			{%- endfor -%}
+		</ul>
+		{%- include footer.html -%}
+	</main>
+</body>
+
+</html>

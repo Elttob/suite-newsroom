@@ -1,0 +1,21 @@
+title: Studio Elttob Newsroom
+short_title: Newsroom
+description: Announcements and updates from Studio Elttob.
+baseurl: ""
+url: "https://news.elttob.studio/"
+
+date_format: "%e %b %Y"
+
+copyright_holder: Studio Elttob
+copyright: All rights reserved.
+
+sass:
+  style: :compressed
+
+twitter:
+  username: StudioElttob
+  card: summary
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

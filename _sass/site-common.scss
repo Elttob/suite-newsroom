@@ -1,0 +1,89 @@
+$neutral-200: #000;
+$neutral-300: #222;
+$neutral-400: #444;
+$neutral-500: #666;
+$neutral-600: #888;
+$neutral-700: #aaa;
+$neutral-800: #ccc;
+$neutral-900: #eee;
+$accent: #89bdeb;
+
+$main-bg: $neutral-200;
+$main-fg: $neutral-900;
+$main-hr: $neutral-400;
+$sub-fg: $neutral-600;
+
+$header-bg: $neutral-200;
+$header-fg: $neutral-900;
+
+$code-bg: $neutral-300;
+$code-fg: $neutral-900;
+
+$font-body: "Plus Jakarta Sans", --system-ui, system-ui, sans-serif;
+$font-display: "Plus Jakarta Sans", --system-ui, system-ui, sans-serif;
+$font-code: "JetBrains Mono", "Consolas", monospace;
+$font-size-code: 0.9375rem;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $main-bg;
+
+    color: $main-fg;
+    font-family: $font-body;
+
+    line-height: 150%;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    font-family: $font-display;
+	line-height: 125%;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+a {
+    color: $accent;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border: none;
+    background-color: $main-hr;
+    height: 1px;
+}
+
+sup {
+    vertical-align: inherit;
+    font-size: inherit;
+    font-feature-settings: "sups";
+}
+
+sub {
+    vertical-align: inherit;
+    font-size: inherit;
+    font-feature-settings: "subs";
+}
